@@ -1,7 +1,7 @@
 {
-  "name": "swiss-pairing",
+  "name": "swissler",
   "version": "0.1.0",
-  "description": "Swiss pairing stuff",
+  "description": "Swiss pairing tournament stuff",
   "main": "index.js",
   "scripts": {
     "test": "mocha"
