@@ -100,3 +100,5 @@ const recordResult = (tourney, ixP1, gamesP1, ixP2, gamesP2) => {
 const dropPlayer = (tourney, ixPlayers) => {
   /*code*/
 }
+
+exports.makeTournament = makeTournament
