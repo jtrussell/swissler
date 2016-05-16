@@ -1,4 +1,6 @@
 
+'use strict'
+
 /**
  * Creates a vanilla tournament object from the given list of players
  *
@@ -29,6 +31,20 @@ const makeTournament = (players) => {
   return {
     players: players,
     results: Array(n).fill(Array(n).fill(-Infinity))
+  }
+}
+
+/**
+ * Get a deep copy of the given tournament object
+ *
+ * @param {Object} tourney Tournament object to clone
+ * @return {Object} Tournament clone
+ * @private
+ */
+const cloneTournament = (tourney) => {
+  return {
+    players: tourney.players.slice(),
+    results: tourney.results.map(r => r.slice())
   }
 }
 
@@ -85,7 +101,10 @@ const getStandings = (tourney) => {
  * @return {Object} A new tournament object
  */
 const recordResult = (tourney, ixP1, gamesP1, ixP2, gamesP2) => {
-  /*code*/
+  const t = cloneTournament(tourney)
+  t.results[ixP1][ixP2] = gamesP1
+  t.results[ixP2][ixP1] = gamesP2
+  return t
 }
 
 /**
@@ -102,3 +121,4 @@ const dropPlayer = (tourney, ixPlayers) => {
 }
 
 exports.makeTournament = makeTournament
+exports.recordResult = recordResult

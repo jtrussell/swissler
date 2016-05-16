@@ -1,4 +1,6 @@
 
+'use strict'
+
 const expect = require('chai').expect
 const makeTournament = require('..').makeTournament
 
