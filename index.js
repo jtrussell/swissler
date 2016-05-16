@@ -91,7 +91,7 @@ const recordResult = (tourney, ixP1, gamesP1, ixP2, gamesP2) => {
 /**
  * Drop players from the tournament
  *
- * Returns a new tourney object with a given players removed
+ * Returns a new tourney object with the given players removed
  *
  * @param {Object} tourney A tournament object
  * @param {Array<int>} ixPlayers Indexes of the player to drop
