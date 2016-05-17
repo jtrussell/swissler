@@ -101,6 +101,10 @@ const getStandings = (tourney) => {
  * @return {Object} A new tournament object
  */
 const recordResult = (tourney, ixP1, gamesP1, ixP2, gamesP2) => {
+  if(ixP1 === ixP2) {
+    throw new RangeError('A player cannot play themself')
+  }
+
   const t = cloneTournament(tourney)
   t.results[ixP1][ixP2] = gamesP1
   t.results[ixP2][ixP1] = gamesP2

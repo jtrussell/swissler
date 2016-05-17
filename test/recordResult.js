@@ -15,10 +15,14 @@ describe('recordResult', () => {
 
   it('should correctly track results', () => {
     t = recordResult(t, 0, 3, 1, 2)
-    let r = t.results
+    const r = t.results
     expect(r[0][1]).to.equal(3)
     expect(r[1][0]).to.equal(2)
   })
+
+  it('should throw when told a player played themself', function() {
+    expect(() => { recordResult(t, 0, 1, 0, 1) }).to.throw(RangeError)
+  });
 
 })
 
