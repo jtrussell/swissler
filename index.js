@@ -120,9 +120,19 @@ const recordResult = (tourney, ixP1, gamesP1, ixP2, gamesP2) => {
  * @param {Array<int>} ixPlayers Indexes of the player to drop
  * @return {Object} A new tournament object without the specified players
  */
-const dropPlayer = (tourney, ixPlayers) => {
-  /*code*/
+const dropPlayers = (tourney, ixPlayers) => {
+  const t = cloneTournament(tourney)
+  ixPlayers
+    .slice()
+    .sort((a, b) => b - a)
+    .forEach((ix) => {
+      t.players.splice(ix,1)
+      t.results.splice(ix,1)
+      t.results.forEach(r => r.splice(ix, 1))
+    })
+  return t
 }
 
+exports.dropPlayers = dropPlayers
 exports.makeTournament = makeTournament
 exports.recordResult = recordResult
