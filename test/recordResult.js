@@ -20,9 +20,16 @@ describe('recordResult', () => {
     expect(r[1][0]).to.equal(2)
   })
 
+  it('should allow matches to be re-recorded - i.e. updated', function() {
+    t = recordResult(t, 0, 3, 1, 2)
+    t = recordResult(t, 0, 3, 1, 2)
+    const r = t.results
+    expect(r[0][1]).to.equal(3)
+    expect(r[1][0]).to.equal(2)
+  });
+
   it('should throw when told a player played themself', function() {
     expect(() => { recordResult(t, 0, 1, 0, 1) }).to.throw(RangeError)
   });
-
 })
 
