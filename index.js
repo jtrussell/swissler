@@ -134,5 +134,6 @@ const dropPlayers = (tourney, ixPlayers) => {
 }
 
 exports.dropPlayers = dropPlayers
+exports.makePairings = makePairings
 exports.makeTournament = makeTournament
 exports.recordResult = recordResult
