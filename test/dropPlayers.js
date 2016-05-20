@@ -14,6 +14,11 @@ describe('dropPlayers', () => {
     t = makeTournament(['a', 'b', 'c'])
   })
 
+  it('should return a new tournament reference', function() {
+    const t2 = dropPlayers(t, [0])
+    expect(t2).not.to.equal(t)
+  });
+
   it('should remove players from it\'s internal list', () => {
     t = dropPlayers(t, [0])
     expect(t.players).to.deep.equal(['b', 'c'])

@@ -13,6 +13,11 @@ describe('recordResult', () => {
     t = makeTournament(['a', 'b', 'c'])
   })
 
+  it('should return a new tournament reference', function() {
+    const t2 = recordResult(t, 0, 3, 1, 2)
+    expect(t2).not.to.equal(t)
+  });
+
   it('should correctly track results', () => {
     t = recordResult(t, 0, 3, 1, 2)
     const r = t.results
