@@ -65,7 +65,7 @@ const cloneTournament = (tourney) => {
  * @return {Array<Array<Number>>} The matching
  */
 const makePairings = (tourney) => {
-  /*code*/
+  return []
 }
 
 /**
@@ -84,7 +84,7 @@ const makePairings = (tourney) => {
  * @return {Array<Array<Number>>} The standings
  */
 const getStandings = (tourney) => {
-  /*code*/
+  return []
 }
 
 /**
@@ -134,6 +134,7 @@ const dropPlayers = (tourney, ixPlayers) => {
 }
 
 exports.dropPlayers = dropPlayers
+exports.getStandings = getStandings
 exports.makePairings = makePairings
 exports.makeTournament = makeTournament
 exports.recordResult = recordResult
