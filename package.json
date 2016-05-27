@@ -4,7 +4,8 @@
   "description": "Swiss pairing tournament stuff",
   "main": "index.js",
   "scripts": {
-    "test": "mocha"
+    "test": "mocha",
+    "watch": "mocha --watch"
   },
   "keywords": [
     "swiss",
