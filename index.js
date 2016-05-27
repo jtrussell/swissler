@@ -65,7 +65,24 @@ const cloneTournament = (tourney) => {
  * @return {Array<Array<Number>>} The matching
  */
 const makePairings = (tourney) => {
+  if(!isRoundComplete(tourney)) {
+    throw new Error('Cannot make pairings for incomplete round.')
+  }
   return []
+}
+
+/**
+ * Returns `false` if we have partial results for a round and `true` otherwise
+ *
+ * @param {Object} tourney A tournament object
+ * @return {Boolean} Whether or not the round is complete
+ * @private
+ */
+const isRoundComplete = (tourney) => {
+  return !!tourney.results
+    .map(r => r.filter(a => a !== -Infinity))
+    .map(r => r.length)
+    .reduce((a, b) => a === b ? a : NaN)
 }
 
 /**
