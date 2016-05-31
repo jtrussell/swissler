@@ -30,6 +30,7 @@ const makeTournament = (players) => {
   const n = players.length
   return {
     players: players,
+    playersHasDropped: Array(n).fill(0),
     results: Array(n).fill(Array(n).fill(-Infinity))
   }
 }
@@ -44,6 +45,7 @@ const makeTournament = (players) => {
 const cloneTournament = (tourney) => {
   return {
     players: tourney.players.slice(),
+    playersHasDropped: tourney.playersHasDropped.slice(),
     results: tourney.results.map(r => r.slice())
   }
 }
@@ -90,7 +92,7 @@ const isRoundComplete = (tourney) => {
  *
  * Standings include (in order):
  *
- * 1. Player index
+ * 1. Player string
  * 2. Total points
  * 3. Match-win percentage
  * 4. Game-win percentage
@@ -101,7 +103,9 @@ const isRoundComplete = (tourney) => {
  * @return {Array<Array<Number>>} The standings
  */
 const getStandings = (tourney) => {
-  return []
+  return tourney.players
+    .filter((el, ix) => !tourney.playersHasDropped[ix])
+    .map(p => [p, 0, 0, 0, 0, 0])
 }
 
 /**
@@ -139,14 +143,7 @@ const recordResult = (tourney, ixP1, gamesP1, ixP2, gamesP2) => {
  */
 const dropPlayers = (tourney, ixPlayers) => {
   const t = cloneTournament(tourney)
-  ixPlayers
-    .slice()
-    .sort((a, b) => b - a)
-    .forEach((ix) => {
-      t.players.splice(ix,1)
-      t.results.splice(ix,1)
-      t.results.forEach(r => r.splice(ix, 1))
-    })
+  ixPlayers.forEach(ix => { t.playersHasDropped[ix] = 1 })
   return t
 }
 

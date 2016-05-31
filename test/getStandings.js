@@ -6,7 +6,7 @@ const makeTournament = require('..').makeTournament
 const getStandings = require('..').getStandings
 const dropPlayers = require('..').dropPlayers
 
-describe('dropPlayers', () => {
+describe('getStandings', () => {
 
   let t
 
@@ -14,11 +14,13 @@ describe('dropPlayers', () => {
     t = makeTournament(['a', 'b', 'c'])
   })
 
-  it('should return a new tournament reference', () => {
+  it('should ignore dropped players', () => {
     const t2 = dropPlayers(t, [0])
-    expect(t2).not.to.equal(t)
+    const standings = getStandings(t2).map(s => s[0])
+    expect(standings).to.deep.equal(['b', 'c'])
   })
 
 })
+
 
 
