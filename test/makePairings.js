@@ -5,6 +5,7 @@ const expect = require('chai').expect
 const makeTournament = require('..').makeTournament
 const makePairings = require('..').makePairings
 const recordResult = require('..').recordResult
+const dropPlayers = require('..').dropPlayers
 
 describe('makePairings', () => {
 
@@ -22,6 +23,12 @@ describe('makePairings', () => {
   it('should throw if the round is not complete', function() {
     t = recordResult(t, 0, 3, 1, 2)
     expect(() => makePairings(t)).to.throw(Error)
+  });
+
+  it('should not throw when dropped players have not finished a round', function() {
+    t = recordResult(t, 0, 3, 1, 2)
+    t = dropPlayers(t, [2, 3])
+    expect(() => makePairings(t)).not.to.throw(Error)
   });
 
 })

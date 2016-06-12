@@ -82,6 +82,7 @@ const makePairings = (tourney) => {
  */
 const isRoundComplete = (tourney) => {
   return !!tourney.results
+    .filter((r, ix) => !tourney.playersHasDropped[ix])
     .map(r => r.filter(a => a !== -Infinity))
     .map(r => r.length)
     .reduce((a, b) => a === b ? a : NaN)
