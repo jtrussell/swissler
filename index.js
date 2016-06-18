@@ -105,8 +105,26 @@ const isRoundComplete = (tourney) => {
  */
 const getStandings = (tourney) => {
   return tourney.players
+    .map((p, ix) => [p, getTotalPoints(tourney, ix), 0, 0, 0, 0])
     .filter((el, ix) => !tourney.playersHasDropped[ix])
-    .map(p => [p, 0, 0, 0, 0, 0])
+}
+
+/**
+ * Get the total points for player at position ixP1 in tourney
+ *
+ * Three points for a win, one for a tie.
+ */
+const getTotalPoints = (tourney, ixP1) => {
+  const r = tourney.results
+  return r
+    .map((p, ixP2) => {
+      return ixP1 === ixP2 ? 0 :
+        r[ixP1][ixP2] == r[ixP2][ixP1] && r[ixP1][ixP2] === -Infinity ? 0 :
+        r[ixP1][ixP2] > r[ixP2][ixP1] ? 3 :
+        r[ixP1][ixP2] === r[ixP2][ixP1] ? 1 :
+        0
+    })
+    .reduce((a, b) => a + b)
 }
 
 /**
