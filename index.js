@@ -14,7 +14,7 @@
  * ```
  *
  * Where `results` is a weighted adjacency matrix with indexes corresponding to
- * entries in `players`. I.e. 
+ * entries in `players`. I.e.
  *
  * - `results[i][j]` is the number of games player `i` won against player `j`
  *   when they played.
@@ -105,7 +105,14 @@ const isRoundComplete = (tourney) => {
  */
 const getStandings = (tourney) => {
   return tourney.players
-    .map((p, ix) => [p, getTotalPoints(tourney, ix), 0, 0, 0, 0])
+    .map((p, ix) => [
+      p,
+      getTotalPoints(tourney, ix),
+      getMatchWinPct(tourney, ix),
+      getGameWinPct(tourney, ix),
+      getOppMatchWinPct(tourney, ix),
+      getOppGameWinPct(tourney, ix)
+    ])
     .filter((el, ix) => !tourney.playersHasDropped[ix])
 }
 
@@ -127,6 +134,13 @@ const getTotalPoints = (tourney, ixP1) => {
     .reduce((a, b) => a + b)
 }
 
+/**
+ * @todo
+ */
+const getMatchWinPct = () => 0
+const getGameWinPct = () => 0
+const getOppMatchWinPct = () => 0
+const getOppGameWinPct = () => 0
 /**
  * Update the tournament with a new result
  *
